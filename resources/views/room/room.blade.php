@@ -19,7 +19,7 @@
     @section('right_side')
         <h1 class="text-center text-2xl font-bold mb-2">Room List</h1>
         <div class="text-right mb-4">
-            <a href="/room/new"
+            <a href="/room/create"
                 class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">+
                 Add new room</a>
 
@@ -49,10 +49,15 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @php
+                        // Calculate the starting index for the current page
+                        $startingIndex = ($bladeRooms->currentPage() - 1) * $bladeRooms->perPage() + 1;
+                    @endphp
                     @foreach ($bladeRooms as $room)
                         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                             <td class="px-6 py-4">
-                                {{ $loop->iteration }}
+                                {{-- {{ $loop->iteration }} --}}
+                                {{ $startingIndex++ }}
                             </td>
                             <th scope="row"
                                 class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
