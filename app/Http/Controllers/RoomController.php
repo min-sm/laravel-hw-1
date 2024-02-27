@@ -52,6 +52,7 @@ class RoomController extends Controller
      */
     public function store(Request $request)
     {
+        // need to custom validation to check for numbers within the range of 0 to 10 for room_no_of_patients
         $request->validate(["room_no" => "required|numeric", "room_no_of_patients" => "required|numeric", "room_price" => "required|numeric"]);
 
         $room_model = new Room();
@@ -82,7 +83,9 @@ class RoomController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $room_model = new Room();
+        $room = $room_model->findRoom($id);
+        return view('room.room_edit', ["room" => $room]);
     }
 
     /**
@@ -91,6 +94,19 @@ class RoomController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $room_model = new Room();
+        if ($request->room_no_of_patients == 0) {
+            $room_status = 1;
+        } else if ($request->room_no_of_patients == 10) {
+            $room_status = 3;
+        } else {
+            $room_status = 2;
+        }
+        $dataToBeAdded = $request->all();
+        $dataToBeAdded['room_status'] = $room_status;
+        $room_model->updateRoomByID($dataToBeAdded, $id);
+
+        return redirect('/room');
     }
 
     /**
