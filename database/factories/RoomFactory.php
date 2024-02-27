@@ -29,7 +29,7 @@ class RoomFactory extends Factory
             'room_status' => $roomStatus, // Set room_status based on room_no_of_patients
             'room_no_of_patients' => $roomNoOfPatients, // Random number of patients (0 to 10)
             'room_price' => $this->faker->randomFloat(2, 100, 2_000), // Random room price between 50 and 200 with 2 decimal places
-            'del_flg' => $this->faker->randomElement([0, 1]), // Random delete flag (0 or 1)
+            'del_flg' => $this->faker->randomElement([0, 1])->default(1), // Random delete flag (0 or 1)
             'created_at' => $createdAt, // Random created_at timestamp
             'updated_at' => $updatedAt, // Random updated_at timestamp not earlier than created_at
         ];

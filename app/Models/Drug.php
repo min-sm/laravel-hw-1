@@ -12,6 +12,10 @@ class Drug extends Model
 
     public function drugListDashboard()
     {
-        return DB::table('drugs')->where('del_flg', 0)->orderByDesc('created_at')->limit(4)->get();
+        // Eloquent
+        return Drug::where('del_flg', 0)->orderByDesc('created_at')->limit(4)->get();
+
+        // Query Builder
+        // return DB::table('drugs')->where('del_flg', 0)->orderByDesc('created_at')->limit(4)->get();
     }
 }

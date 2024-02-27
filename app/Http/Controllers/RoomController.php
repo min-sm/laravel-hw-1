@@ -23,8 +23,28 @@ class RoomController extends Controller
      */
     public function create()
     {
-        //
-        return view('room.room_add');
+        $room_model = new Room();
+        $room = $room_model->lastAddedRoom();
+        $room_no = $room->room_no;
+
+        // Extracting the prefix (e.g., 2, 3) from the room number
+        $first_digit = substr($room_no, 0, 1);
+        $first_digit *= 100;
+
+        // Extracting the number part (e.g., 15, 14) from the room number
+        $remaining_digits = intval(substr($room_no, 1));
+
+        // If the remaining digits are greater than 15, increment by 86
+        if ($remaining_digits > 15) {
+            $remaining_digits = 101;
+        } else {
+            // If the remaining digits are less than or equal to 15, increment by 1
+            $remaining_digits++;
+        }
+
+        // Form the new room number
+        $new_room_no = $first_digit + $remaining_digits;
+        return view('room.room_add', ["room_no" => $new_room_no]);
     }
 
     /**
@@ -32,7 +52,21 @@ class RoomController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate(["room_no" => "required|numeric", "room_no_of_patients" => "required|numeric", "room_price" => "required|numeric"]);
+
+        $room_model = new Room();
+        if ($request->room_no_of_patients == 0) {
+            $room_status = 1;
+        } else if ($request->room_no_of_patients == 10) {
+            $room_status = 3;
+        } else {
+            $room_status = 2;
+        }
+        $dataToBeAdded = $request->all();
+        $dataToBeAdded['room_status'] = $room_status;
+        $room_model->addRoom($dataToBeAdded);
+
+        return redirect('/room');
     }
 
     /**
@@ -67,7 +101,6 @@ class RoomController extends Controller
         //
         $room_model = new Room();
         $rooms = $room_model->roomDelete($id);
-
         return redirect('/room');
     }
 }
