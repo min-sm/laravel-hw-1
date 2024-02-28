@@ -11,6 +11,10 @@
     <script src="https://cdn.tailwindcss.com"></script>
     {{-- Flowbite --}}
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
+    {{-- FontAwesome --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Adding new room</title>
 </head>
 
@@ -31,7 +35,8 @@
             <input type="text" name="room_no" id="room_no" value="{{ $room_no }}" class="hidden">
 
             <label for="no_of_patients">Num of patients:</label>
-            <input type="text" name="room_no_of_patients" id="no_of_patients" value="{{ old('no_of_patients') }}" required>
+            <input type="text" name="room_no_of_patients" id="no_of_patients" value="{{ old('no_of_patients') }}"
+                required>
 
             <label for="room_price">Room price: </label>
             <input type="text" name="room_price" id="room_price" value="{{ old('room_price') }}" required>

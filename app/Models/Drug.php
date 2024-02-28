@@ -19,11 +19,18 @@ class Drug extends Model
         // return DB::table('drugs')->where('del_flg', 0)->orderByDesc('created_at')->limit(4)->get();
     }
 
-    public function drugList() {
+    public function drugList()
+    {
         return Drug::where('del_flg', 0)->paginate('10');
     }
 
-    public function deleteDrug($id) {
+    public function deleteDrug($id)
+    {
         return Drug::where('id', $id)->update(["del_flg" => 1]);
+    }
+
+    public static function numOfDrug()
+    {
+        return self::where('del_flg', 0)->count();
     }
 }

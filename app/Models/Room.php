@@ -71,4 +71,9 @@ class Room extends Model
         // $room->room_price = $dataToBeAdded["room_price"];
         // $room->save();
     }
+
+    public function numOfRoom() {
+        return DB::select('SELECT COUNT(*) AS num FROM rooms WHERE del_flg = 0;
+        ');
+    }
 }
