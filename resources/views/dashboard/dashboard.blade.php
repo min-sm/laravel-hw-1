@@ -79,13 +79,19 @@
                         </tbody>
                     </table>
                 </div>
-                <a href="/room" class="font-medium text-sm underline text-blue-500 float-right my-3 hover:cursor-pointer hover:text-blue-700">See all</a>
-
+                <a href="/room"
+                    class="font-medium text-sm underline text-blue-500 float-right my-3 hover:cursor-pointer hover:text-blue-700">See
+                    all</a>
             </div>
 
             <!-- sec_first -->
             <div>
-                <p class="text-red-500">Medicine</p>
+                <div class="flex items-center justify-between mb-2">
+                    <p class="text-red-500">Drug</p>
+                    <a href="/room/create"
+                        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 float-right">Add
+                        new drug</a>
+                </div>
                 <div class="relative overflow-x-auto">
                     <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -132,6 +138,8 @@
                         </tbody>
                     </table>
                 </div>
+                <a href="/drug"
+                    class="font-medium text-sm underline text-blue-500 float-right my-3 hover:cursor-pointer hover:text-blue-700">See all</a>
             </div>
         </div>
 

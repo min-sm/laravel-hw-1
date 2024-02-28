@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DrugController;
 use App\Http\Controllers\RoomController;
 use App\Models\Room;
 use Illuminate\Support\Facades\Route;
@@ -25,3 +26,5 @@ Route::get('/', function () {
 Route::get('/dashboard', [DashboardController::class, 'lists']);
 
 Route::resource('/room', RoomController::class);
+
+Route::resource('/drug', DrugController::class);
