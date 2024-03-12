@@ -21,7 +21,9 @@
 <body>
 
     @section('right_side')
-        <h1 class="text-center text-2xl font-bold mb-2">Room List</h1>
+    {{-- {{ dd(gettype($numOfRoom)) }} --}}
+        <h1 class="text-center text-2xl font-bold mb-2">{{ __('message.roomList') }} ( {{ trans_choice('message.numOfRoom', 
+        $numOfRoom) }} )</h1>
         <div class="text-right mb-4">
             <a href="/room/create"
                 class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">+

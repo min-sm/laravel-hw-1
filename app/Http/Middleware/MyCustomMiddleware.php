@@ -24,7 +24,6 @@ class MyCustomMiddleware
         
         $drug_model = new Drug();
         $numOfDrug = $drug_model->numOfDrug();
-        
         view()->share('numOfRoom', $numOfRoom);
         view()->share('numOfDrug', $numOfDrug);
         return $next($request);

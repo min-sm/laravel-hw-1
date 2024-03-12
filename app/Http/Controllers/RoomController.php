@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Room;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class RoomController extends Controller
 {
@@ -67,6 +68,8 @@ class RoomController extends Controller
         $dataToBeAdded['room_status'] = $room_status;
         $room_model->addRoom($dataToBeAdded);
 
+        Log::info("A new room, $request->room_no, is added", ["room num" => $request->room_no]);
+        Log::channel("customlog")->debug("Custom log test. A new room, $request->room_no, is added", ["room num" => $request->room_no]);
         return redirect('/room');
     }
 

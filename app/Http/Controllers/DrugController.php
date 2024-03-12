@@ -26,6 +26,7 @@ class DrugController extends Controller
     public function create()
     {
         //
+        return view('drug.drug_add');
     }
 
     /**
