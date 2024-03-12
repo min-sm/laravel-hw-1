@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Drug;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class DrugController extends Controller
 {
@@ -34,7 +35,13 @@ class DrugController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate(["drug_name" => "required", "drug_amt" => "required|numeric|min:0", "drug_amt_unit" => "required", "drug_stock" => "required|numeric|min:0", "drug_price" => "required|numeric|min:0"]);
+
+        $drug_model = new Drug();
+        $drug_model->addDrug($request->all());
+
+        Log::info("A new drug, $request->drug_name, is added", ["drug name" => $request->drug_name]);
+        return redirect('/drug');
     }
 
     /**
@@ -50,7 +57,9 @@ class DrugController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $drug_model = new Drug();
+        $drug = $drug_model->findDrug($id);
+        return view('drug.drug_edit', ["drug" => $drug]);
     }
 
     /**

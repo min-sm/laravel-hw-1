@@ -22,22 +22,20 @@
 
     @section('right_side')
         <h1 class="text-center text-2xl font-bold mb-2">Add new room</h1>
-        @if ($errors->any)
-            @foreach ($errors as $error)
+        @if ($errors->any())
+            @foreach ($errors->all() as $error)
                 <li class="text-red-500">{{ $error }}</li>
             @endforeach
         @endif
         <form action="/room/" method="POST">
             @csrf
-            {{-- @method('put') --}}
             <label for="room_no">Room no:</label>
             <input type="text" name="room_no" id="room_no" value="{{ $room_no }}" disabled>
             <input type="text" name="room_no" id="room_no" value="{{ $room_no }}" class="hidden">
 
             <label for="no_of_patients">Num of patients:</label>
-            <input type="text" name="room_no_of_patients" id="no_of_patients" value="{{ old('no_of_patients') }}"
+            <input type="text" name="room_no_of_patients" id="no_of_patients" value="{{ old('room_no_of_patients') }}"
                 required>
-
             <label for="room_price">Room price: </label>
             <input type="text" name="room_price" id="room_price" value="{{ old('room_price') }}" required>
 

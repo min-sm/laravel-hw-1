@@ -15,21 +15,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <title>Adding new drug</title>
+    <title>Editing {{ $drug->drug_name }}</title>
 </head>
 
 <body>
 
     @section('right_side')
-        <h1 class="text-center text-2xl font-bold mb-2">Add new drug</h1>
-
-        @if ($errors->any())
-            @foreach ($errors as $error)
-                <li class="text-red-500">{{ $error }}</li>
-            @endforeach
-        @endif
-        <form action="/drug" method="POST">
+        <h1 class="text-center text-2xl font-bold mb-2">Editing {{ $drug->drug_name }}</h1>
+        <form action="/drug/{{ $drug->id }}" method="POST">
             @csrf
+            @method('put')
             <label for="drug_name">Drug name:</label>
             <input type="text" name="drug_name" id="drug_name" value="{{ old('drug_name') }}">
 

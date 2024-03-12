@@ -53,8 +53,7 @@ class RoomController extends Controller
      */
     public function store(Request $request)
     {
-        // need to custom validation to check for numbers within the range of 0 to 10 for room_no_of_patients
-        $request->validate(["room_no" => "required|numeric", "room_no_of_patients" => "required|numeric", "room_price" => "required|numeric"]);
+        $request->validate(["room_no" => "required|numeric", "room_no_of_patients" => "required|numeric|between:0,10", "room_price" => "required|numeric|min:0|max:999999.99"]);
 
         $room_model = new Room();
         if ($request->room_no_of_patients == 0) {
